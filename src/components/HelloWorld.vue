@@ -1,34 +1,44 @@
 <template>
   <div class="hello">
-    
+    {{message}}
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import {
+    mapActions,
+    mapGetters
+  } from 'vuex'
+  
+  export default {
+    name: 'HelloWorld',
+    data() {
+      return {
+        meshCubeName: 'meshCube',
+        width: 500,
+        height: 500,
+        message: 'Vuejs love Threejs'
+      }
+    },
+    methods: {
+      getCameraAspect() {
+        return this.height / this.width;
+      },
+      ...mapActions(['setCamera', 'setRenderer']),
+    },
+    computed: {
+      animatedThis() {
+        return ['meshCube'];
+      },
+      ...mapGetters(['getCamera', 'getRenderer', 'getScene', 'getSceneObject', 'isReadyToRender']),
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
 </style>
