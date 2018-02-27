@@ -21,6 +21,7 @@ Vue.use(ThreeScene)
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
+Vue.config.performance = true
 
 /* eslint-disable no-new */
 new Vue({
